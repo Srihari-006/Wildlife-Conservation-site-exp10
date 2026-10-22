@@ -120,6 +120,10 @@ NodeServerApp/
 
 Run `node server.js` or `npm start` from `NodeServerApp`. The server listens on port `3000`. To use a different port, edit `const PORT = 3000;` in `server.js`, then restart the server and use the corresponding port in the browser URL.
 
+### Deploying to Vercel
+
+The `api/index.js` function delegates to the same request handler used by the local HTTP server, and `vercel.json` rewrites site paths to that function while preserving the requested route. To deploy, install/use the Vercel CLI, sign in with `npx vercel login`, then run `npx vercel --prod` from this folder and follow the prompts. Vercel will provide the live deployment URL.
+
 ## Sample Questions
 
 ### a) What is Node.js and why is it used for server-side development?

@@ -252,8 +252,7 @@ const pages = {
   },
 };
 
-// http.createServer() creates the HTTP server and runs this callback for each incoming request.
-const server = http.createServer((req, res) => {
+function handleRequest(req, res) {
   let pathname;
   try {
     pathname = new URL(req.url, `http://${req.headers.host || 'localhost'}`).pathname;
@@ -277,9 +276,16 @@ const server = http.createServer((req, res) => {
   res.writeHead(statusCode, { 'Content-Type': 'text/html' });
   // res.end() sends the completed HTML response and closes the response stream.
   res.end(body);
-});
+}
 
-// server.listen() starts accepting HTTP connections on the selected port.
-server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  // http.createServer() creates the HTTP server and runs this callback for each incoming request.
+  const server = http.createServer(handleRequest);
+
+  // server.listen() starts accepting HTTP connections on the selected port.
+  server.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = { handleRequest };
