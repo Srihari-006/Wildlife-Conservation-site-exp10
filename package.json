@@ -1,0 +1,9 @@
+{
+  "name": "wildguard",
+  "version": "1.0.0",
+  "description": "A wildlife conservation website built with Node.js http",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
